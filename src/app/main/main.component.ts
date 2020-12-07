@@ -19,19 +19,36 @@ export class MainComponent implements OnInit {
     minZoom: 8,
   };
   markers: any[] = [];
-
-  infoContent = ""
+  places:any[] = [
+    {
+      name: "the edge",
+      address: "4149 18th street san fransisco california 94114",
+      phone: "+14158634027",
+      info: "this is a bar",
+      safety: "lgbt",
+      lat: 37.7607392,
+      lng: -122.4381946,
+    }
+  ];
+  // infoContent = ""
+  locationName = "";
+  locationAddress = "";
+  locationPhone = "";
+  locationInfo = "";
+  // locationSafety = "";
 
   constructor() {}
 
   ngOnInit(): void {
-    navigator.geolocation.getCurrentPosition((position) => {
+    // navigator.geolocation.getCurrentPosition((position) => {
       this.center = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
+        lat: 37.7607392,
+        lng: -122.4381946,
       };
-    });
-    // this.addMarker();
+    // });
+    this.places.forEach((place)=>{
+      this.addMarker(place)
+    })
   }
 
   zoomIn() {
@@ -44,31 +61,36 @@ export class MainComponent implements OnInit {
 
   openInfo(marker:MapMarker, content){
     console.log(marker);
-    this.infoContent = content;
+    this.locationName = content.name;
+    this.locationAddress = content.address;
+    this.locationPhone = content.phone;
+    this.locationInfo = content.info;
     this.infoWindow.open(marker);
   }
 
-  addMarker(lat:number,lng:number):void {
+  addMarker(place):void {
     this.markers.push({
       position: {
-        lat: lat,
-        lng: lng,
+        lat: place.lat,
+        lng: place.lng,
       },
       label: {
         color: 'green',
-        text: 'Marker label ' + (this.markers.length + 1),
+        text: place.name,
       },
-      title: 'Marker title ' + (this.markers.length + 1),
-      // options: { animation: google.maps.Animation.BOUNCE },
-      name: 'name',
-      info: 'this is simply a test of our ability to manipulate data',
+      title: place.name,
+      name: place.name,
+      address: place.address,
+      phone: place.phone,
+      info: place.info,
+      safety: place.safety
     });
     console.log(this.markers);
   }
 
-  click(event: google.maps.MouseEvent) {
-    let lat = event.latLng.lat();
-    let lng = event.latLng.lng();
-    this.addMarker(lat,lng)
-  }
+  // click(event: google.maps.MouseEvent) {
+  //   let lat = event.latLng.lat();
+  //   let lng = event.latLng.lng();
+  //   this.addMarker(lat,lng)
+  // }
 }
