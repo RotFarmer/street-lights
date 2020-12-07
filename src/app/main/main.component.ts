@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 
 @Component({
   selector: 'app-main',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
+  @ViewChild(MapInfoWindow, {static:false}) infoWindow: MapInfoWindow;
   zoom = 5;
   center: google.maps.LatLngLiteral;
   options: google.maps.MapOptions = {
@@ -18,6 +20,8 @@ export class MainComponent implements OnInit {
   };
   markers: any[] = [];
 
+  infoContent = ""
+
   constructor() {}
 
   ngOnInit(): void {
@@ -27,7 +31,7 @@ export class MainComponent implements OnInit {
         lng: position.coords.longitude,
       };
     });
-    this.addMarker();
+    // this.addMarker();
   }
 
   zoomIn() {
@@ -38,11 +42,17 @@ export class MainComponent implements OnInit {
     if (this.zoom > this.options.minZoom) this.zoom--;
   }
 
-  addMarker() {
+  openInfo(marker:MapMarker, content){
+    console.log(marker);
+    this.infoContent = content;
+    this.infoWindow.open(marker);
+  }
+
+  addMarker(lat:number,lng:number):void {
     this.markers.push({
       position: {
-        lat: 42.4842613,
-        lng: -83.4472283,
+        lat: lat,
+        lng: lng,
       },
       label: {
         color: 'green',
@@ -50,11 +60,15 @@ export class MainComponent implements OnInit {
       },
       title: 'Marker title ' + (this.markers.length + 1),
       // options: { animation: google.maps.Animation.BOUNCE },
+      name: 'name',
+      info: 'this is simply a test of our ability to manipulate data',
     });
     console.log(this.markers);
   }
 
   click(event: google.maps.MouseEvent) {
-    console.log(event.latLng.lat);
+    let lat = event.latLng.lat();
+    let lng = event.latLng.lng();
+    this.addMarker(lat,lng)
   }
 }
