@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { StreetlightsService } from '../streetlights.service';
 
 @Component({
   selector: 'app-main',
@@ -7,49 +8,60 @@ import { MapInfoWindow, MapMarker } from '@angular/google-maps';
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
-  @ViewChild(MapInfoWindow, {static:false}) infoWindow: MapInfoWindow;
+  @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
   zoom = 5;
   center: google.maps.LatLngLiteral;
   options: google.maps.MapOptions = {
     // mapTypeId: 'map',
-    zoomControl: false,
+    // zoomControl: false,
     scrollwheel: false,
     disableDoubleClickZoom: true,
-    maxZoom: 15,
-    minZoom: 8,
+    // maxZoom: 15,
+    // minZoom: 8,
   };
   markers: any[] = [];
-  places:any[] = [
-    {
-      name: "the edge",
-      address: "4149 18th street san fransisco california 94114",
-      phone: "+14158634027",
-      info: "this is a bar",
-      safety: "lgbt",
-      lat: 37.7607392,
-      lng: -122.4381946,
-    }
+  places: any[] = [
+    // {
+    //   name: 'the edge',
+    //   address: '4149 18th street san fransisco california 94114',
+    //   phone: '+14158634027',
+    //   info: 'this is a bar',
+    //   safety: 'lgbt',
+    //   lat: 37.7607392,
+    //   lng: -122.4381946,
+    // },
   ];
   // infoContent = ""
-  locationName = "";
-  locationAddress = "";
-  locationPhone = "";
-  locationInfo = "";
+  locationName = '';
+  locationAddress = '';
+  locationPhone = '';
+  locationInfo = '';
   // locationSafety = "";
 
-  constructor() {}
+  constructor(private service: StreetlightsService) {}
 
   ngOnInit(): void {
     // navigator.geolocation.getCurrentPosition((position) => {
-      this.center = {
-        lat: 37.7607392,
-        lng: -122.4381946,
-      };
+    this.center = {
+      lat: 37.7607392,
+      lng: -122.4381946,
+    };
     // });
-    this.places.forEach((place)=>{
-      this.addMarker(place)
-    })
+    this.getPlaces();
+    // this.places.forEach((place) => {
+    //   this.addMarker(place);
+    // });
   }
+
+  getPlaces = () => {
+    this.service.getPlaces().subscribe((response) => {
+      this.places = response;
+      // console.log(response);
+      this.places.forEach((place) => {
+        this.addMarker(place);
+      });
+    });
+  };
 
   zoomIn() {
     if (this.zoom < this.options.maxZoom) this.zoom++;
@@ -59,7 +71,7 @@ export class MainComponent implements OnInit {
     if (this.zoom > this.options.minZoom) this.zoom--;
   }
 
-  openInfo(marker:MapMarker, content){
+  openInfo(marker: MapMarker, content) {
     console.log(marker);
     this.locationName = content.name;
     this.locationAddress = content.address;
@@ -68,11 +80,11 @@ export class MainComponent implements OnInit {
     this.infoWindow.open(marker);
   }
 
-  addMarker(place):void {
+  addMarker(place): void {
     this.markers.push({
       position: {
-        lat: place.lat,
-        lng: place.lng,
+        lat: parseFloat(place.lat),
+        lng: parseFloat(place.long),
       },
       label: {
         color: 'green',
@@ -81,9 +93,9 @@ export class MainComponent implements OnInit {
       title: place.name,
       name: place.name,
       address: place.address,
-      phone: place.phone,
+      phone: place.phonenumber,
       info: place.info,
-      safety: place.safety
+      safety: place.safety,
     });
     console.log(this.markers);
   }
