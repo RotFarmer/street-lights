@@ -5,3 +5,19 @@
   width: 100%;
   /* The width is the width of the web page */
 }
+
+.form-container {
+  background-color: white;
+  /* height: 200px;
+  width: 200px;
+  border: black 1px solid; */
+}
+
+.hide {
+  display: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}

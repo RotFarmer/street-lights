@@ -5,10 +5,10 @@
   [zoom]="zoom"
   [center]="center"
   [options]="options"
-  
+  (mapClick)="click($event)"
 >
   <map-marker
-    #markerElem = "mapMarker"
+    #markerElem="mapMarker"
     *ngFor="let marker of markers"
     [position]="marker.position"
     [label]="marker.label"
@@ -18,15 +18,74 @@
   >
   </map-marker>
   <map-info-window>
-   <p>{{locationName}}</p>
-   <p>{{locationAddress}}</p>
-   <p>{{locationPhone}}</p>
-   <p>{{locationInfo}}</p>
+    <p>{{ locationName }}</p>
+    <p>{{ locationAddress }}</p>
+    <p>{{ locationPhone }}</p>
+    <p>{{ locationInfo }}</p>
   </map-info-window>
-
+  <div class="form-container" [class.hide]="hide === true">
+    <form class="form" #reportForm="ngForm" (ngSubmit)="submitPost(reportForm)">
+      <p>Where are you?</p>
+      <label for="name">Name of Location</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Leave blank if unsure"
+        ngModel
+      />
+      <label for="address">Do you have an Address?</label>
+      <input
+        type="text"
+        name="address"
+        id="address"
+        placeholder="Leave blank if unsure"
+        ngModel
+      />
+      <label for="phone">Do you have the phone number for the location?</label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+        placeholder="Leave blank if unsure"
+        ngModel
+      />
+      <label for="report">Report</label>
+      <input
+        type="text"
+        name="report"
+        id="report"
+        placeholder="What happened?"
+        ngModel
+      />
+      <div>
+        <p>Safe Place?</p>
+        <input type="radio" name="safety" id="safe" value="true" ngModel />
+        <label for="safe">Safe</label>
+        <input type="radio" name="safety" id="unsafe" value="false" ngModel />
+        <label for="unsafe">Unsafe</label>
+      </div>
+      <input
+        type="number"
+        name="lat"
+        id="lat"
+        placeholder="lat"
+        ngModel="{{ newLat }}"
+      />
+      <input
+        type="number"
+        name="long"
+        id="long"
+        placeholder="long"
+        ngModel="{{ newLong }}"
+      />
+      <button>submit</button>
+    </form>
+  </div>
 </google-map>
 <!-- Use custom zoom buttons -->
-<button (click)="zoomIn()">Zoom in</button>
-<button (click)="zoomOut()">Zoom out</button>
+<!-- <button (click)="zoomIn()">Zoom in</button>
+<button (click)="zoomOut()">Zoom out</button> -->
 
 <!-- (mapClick)="click($event)" -->
