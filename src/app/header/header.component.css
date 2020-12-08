@@ -1,0 +1,7 @@
+h1 {
+  display: flex;
+}
+.nav {
+  list-style-type: none;
+  display: flex;
+}

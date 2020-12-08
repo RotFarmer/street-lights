@@ -1,13 +1,20 @@
 /* Set the size of the div element that contains the map */
 .map {
-  height: 400px;
+  height: 775px;
   /* The height is 400 pixels */
   width: 100%;
   /* The width is the width of the web page */
+  position: relative;
 }
 
 .form-container {
-  background-color: white;
+  background-color: #df861d;
+  border-radius: 10px;
+  display: flex;
+  position: absolute;
+  z-index: 1;
+  top: 550px;
+  left: 75px;
   /* height: 200px;
   width: 200px;
   border: black 1px solid; */
@@ -20,4 +27,11 @@
 .form {
   display: flex;
   flex-direction: column;
+}
+::placeholder {
+  color: black;
+}
+.submit-btn {
+  background-color: black;
+  color: #aa3d01;
 }
