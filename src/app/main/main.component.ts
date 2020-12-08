@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { Router } from '@angular/router';
 import { StreetlightsService } from '../streetlights.service';
 
 @Component({
@@ -9,7 +11,7 @@ import { StreetlightsService } from '../streetlights.service';
 })
 export class MainComponent implements OnInit {
   @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
-  zoom = 5;
+  zoom = 15;
   center: google.maps.LatLngLiteral;
   options: google.maps.MapOptions = {
     // mapTypeId: 'map',
@@ -37,8 +39,11 @@ export class MainComponent implements OnInit {
   locationPhone = '';
   locationInfo = '';
   // locationSafety = "";
+  hide: boolean = true;
+  newLat: number;
+  newLong: number;
 
-  constructor(private service: StreetlightsService) {}
+  constructor(private service: StreetlightsService, private router: Router) {}
 
   ngOnInit(): void {
     // navigator.geolocation.getCurrentPosition((position) => {
@@ -100,9 +105,13 @@ export class MainComponent implements OnInit {
     console.log(this.markers);
   }
 
-  // click(event: google.maps.MouseEvent) {
-  //   let lat = event.latLng.lat();
-  //   let lng = event.latLng.lng();
-  //   this.addMarker(lat,lng)
-  // }
+  click = (event: google.maps.MouseEvent) => {
+    this.newLat = event.latLng.lat();
+    this.newLong = event.latLng.lng();
+    this.hide = !this.hide;
+  };
+
+  submitPost = (form: NgForm) => {
+    this.service.createReport(form);
+  };
 }
