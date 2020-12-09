@@ -7,14 +7,21 @@
   position: relative;
 }
 
+input,
+label {
+  justify-content: space-between;
+  color: black;
+}
+
 .form-container {
-  background-color: #df861d;
+  background-color: #fdc029;
   border-radius: 10px;
   display: flex;
   position: absolute;
-  z-index: 1;
-  top: 550px;
-  left: 75px;
+  z-index: 2;
+  top: 275px;
+  left: 100px;
+  height: 50%;
   /* height: 200px;
   width: 200px;
   border: black 1px solid; */
@@ -27,11 +34,90 @@
 .form {
   display: flex;
   flex-direction: column;
+  padding: 0;
 }
+.safe-p {
+  color: #fdc029;
+  font: bolder;
+  font-size: 25px;
+}
+.safe-space {
+  color: #fdc029;
+}
+
 ::placeholder {
-  color: black;
+  color: #df861d;
 }
 .submit-btn {
   background-color: black;
   color: #aa3d01;
+}
+
+html,
+body,
+div {
+  height: 100%;
+  background-color: #1d1d1d;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  position: relative;
+  background: linear-gradient(-90deg, #fdc029, #df861d, #aa3d01, #f0d800ef);
+  background-size: 400% 100%;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.25em;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 10px;
+  margin: 0;
+  animation: Gradient 4s ease infinite;
+  text-decoration: none;
+  border-radius: 10px;
+  display: flex;
+  position: absolute;
+  z-index: 1;
+  top: 325px;
+  left: 160px;
+}
+
+.btn div {
+  color: black;
+  min-height: 40px;
+  padding: 0 1.618em;
+  border-radius: inherit;
+  background-size: inherit;
+  background-image: inherit;
+  animation: Gradient 4s ease infinite;
+  position: relative;
+  z-index: 1;
+  mix-blend-mode: overlay;
+  font-family: "Helvetica Neue";
+}
+
+@keyframes Gradient {
+  50% {
+    background-position: 140% 50%;
+    transform: skew(-2deg);
+  }
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  background-size: inherit;
+  background-image: inherit;
+  animation: inherit;
+  left: 0px;
+  right: 0px;
+  top: 2px;
+  height: 100%;
+  filter: blur(1rem);
 }
