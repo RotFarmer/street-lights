@@ -235,6 +235,7 @@ export class MainComponent implements OnInit {
     ],
   };
   markers: any[] = [];
+  userMarkers: any[] = [];
   places: any[] = [
     // {
     //   name: 'the edge',
@@ -259,12 +260,13 @@ export class MainComponent implements OnInit {
   constructor(private service: StreetlightsService, private router: Router) {}
 
   ngOnInit(): void {
-    // navigator.geolocation.getCurrentPosition((position) => {
     this.center = {
-      lat: 37.7607392,
+      lat: 37.76658017218035,
       lng: -122.4381946,
     };
-    // });
+
+    this.addUserMarker();
+
     this.getPlaces();
     // this.places.forEach((place) => {
     //   this.addMarker(place);
@@ -318,9 +320,27 @@ export class MainComponent implements OnInit {
     console.log(this.markers);
   }
 
-  click = (event: google.maps.MouseEvent) => {
+  addUserMarker() {
+    this.userMarkers.push({
+      position: {
+        lat: this.center.lat,
+        lng: this.center.lng,
+      },
+      label: {
+        color: 'red',
+        text: 'Marker label ' + (this.markers.length + 1),
+      },
+      title: 'Marker title ' + (this.markers.length + 1),
+      options: { draggable: true },
+    });
+  }
+
+  setMarkerLocation = (event: google.maps.MouseEvent) => {
     this.newLat = event.latLng.lat();
     this.newLong = event.latLng.lng();
+  };
+
+  openForm = () => {
     this.hide = !this.hide;
   };
 
