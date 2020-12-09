@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StreetlightsService } from '../streetlights.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class MainComponent implements OnInit {
   @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
   zoom = 15;
   center: google.maps.LatLngLiteral;
+  // userCenter: google.maps.LatLngLiteral;
   options: google.maps.MapOptions = {
     // mapTypeId: 'map',
     // zoomControl: false,
@@ -257,15 +258,43 @@ export class MainComponent implements OnInit {
   newLat: number;
   newLong: number;
 
-  constructor(private service: StreetlightsService, private router: Router) {}
+  constructor(
+    private service: StreetlightsService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.center = {
-      lat: 37.76658017218035,
-      lng: -122.4381946,
-    };
+    // this.center = {
+    //   lat: 37.76658017218035,
+    //   lng: -122.4381946,
+    // };
+    // console.log(this.service.userCenter);
 
-    this.addUserMarker();
+    this.route.queryParamMap.subscribe((response) => {
+      let search = response.get('search');
+      // let lat = response.get('lat');
+      // let lng = response.get('lng');
+      if (!search) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          this.center = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+
+          this.addUserMarker();
+        });
+      } else {
+        this.service.getLocation(search).subscribe((response) => {
+          this.center = response.results[0].geometry.location;
+          this.addUserMarker();
+        });
+        // this.center = {
+        //   lat: parseFloat(lat),
+        //   lng: parseFloat(lng),
+        // };
+      }
+    });
 
     this.getPlaces();
     // this.places.forEach((place) => {
@@ -322,15 +351,12 @@ export class MainComponent implements OnInit {
 
   addUserMarker() {
     this.userMarkers.push({
-      position: {
-        lat: this.center.lat,
-        lng: this.center.lng,
-      },
+      position: this.center,
       label: {
         color: 'red',
-        text: 'Marker label ' + (this.markers.length + 1),
+        text: 'Drag to where you would like to Report',
       },
-      title: 'Marker title ' + (this.markers.length + 1),
+      title: 'Drag to where you would like to Report',
       options: { draggable: true },
     });
   }

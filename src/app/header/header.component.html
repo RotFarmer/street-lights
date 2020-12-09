@@ -1,11 +1,21 @@
 <header class="header">
-<h1>Street Lights</h1>
-<form class="search-bar">
+  <h1>Street Lights</h1>
+  <form
+    class="search-bar"
+    #searchForm="ngForm"
+    (ngSubmit)="getLocation(searchForm)"
+  >
     <label for="text"></label>
-    <input type="text" id="search" class="search-input" placeholder="search..."/>
-</form>
-<div class="nav">
+    <input
+      type="text"
+      name="search"
+      id="search"
+      class="search-input"
+      placeholder="search..."
+      ngModel
+    />
+  </form>
+  <div class="nav">
     <i class="fas fa-bars"></i>
-</div>
-
+  </div>
 </header>
