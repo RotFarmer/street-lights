@@ -1,19 +1,17 @@
-@font-face { 
-  font-family: 'lemon-tuesday';
-  src: url('/assets/Lemon Tuesday.otf');
-  }
-
+@font-face {
+  font-family: "lemon-tuesday";
+  src: url("/assets/Lemon Tuesday.otf");
+}
 
 .header {
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-
 h1 {
   display: flex;
-  font-family: 'lemon-tuesday';
+  font-family: "lemon-tuesday";
   font-size: 25px;
   white-space: nowrap;
   padding-left: 10px;
@@ -24,18 +22,19 @@ h1 {
   display: flex;
   white-space: nowrap;
   padding-right: 10px;
-  font-size:25px;
+  font-size: 25px;
 }
-.search-bar{
+.search-bar {
   white-space: nowrap;
 }
-.search-input{
+.search-input {
+  color: white;
   width: 120px;
   background-color: #171820;
-  border-right:none;
+  border-right: none;
   border-bottom: 1px solid #aa3d01;
   border-radius: 25px;
 }
-::placeholder{
-  color: #aa3d01
+::placeholder {
+  color: #aa3d01;
 }

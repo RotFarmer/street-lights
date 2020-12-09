@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Report } from './interfaces/report';
-// import { googleKey } from './secrets';
+import { googleKey } from './secrets';
 // console.log(googleKey);
 
 @Injectable({
@@ -11,9 +11,24 @@ import { Report } from './interfaces/report';
 })
 export class StreetlightsService {
   baseUrl: string = 'http://localhost:3000/places';
+  baseLocationUrl: string =
+    'https://maps.googleapis.com/maps/api/geocode/json?';
   report: Report;
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  getLocation = (location: string): any => {
+    return this.http.get(`${this.baseLocationUrl}`, {
+      params: {
+        address: location,
+        key: googleKey,
+      },
+    });
+  };
+
+  // userSearchCenter = (location: google.maps.LatLngLiteral) => {
+  //   this.userCenter = location;
+  // };
 
   getPlaces = (): any => {
     return this.http.get(`${this.baseUrl}`);
