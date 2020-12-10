@@ -34,7 +34,7 @@
         (mapClick)="openForm()"
         (mapDragend)="setMarkerLocation($event)"
       >
-      </map-marker>
+              </map-marker>
       <map-info-window>
         <p>{{ locationName }}</p>
         <p>{{ locationAddress }}</p>
@@ -53,61 +53,63 @@
             #reportForm="ngForm"
             (ngSubmit)="submitPost(reportForm)"
           >
-            <h3>Sighting</h3>
-            <label for="name">Name of Location</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Optional"
-              ngModel
-            />
-            <label for="address">Do you have an Address?</label>
-            <input
-              type="text"
-              name="address"
-              id="address"
-              placeholder="Optional"
-              ngModel
-            />
-            <label for="phone"
-              >Do you have the phone number for the location?</label
-            >
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-              placeholder="Optional"
-              ngModel
-            />
-            <label for="report">Make Your Report</label>
-            <input
-              type="text"
-              name="report"
-              id="report"
-              placeholder="What happened?"
-              ngModel
-            />
-            <div>
-              <p class="safe-p">Safe Place?</p>
-              <input
-                type="radio"
-                name="safety"
-                id="safe"
-                value="true"
-                ngModel
-              />
-              <label class="safe-space" for="safe">Safe</label>
-              <input
-                class="safe-space"
-                type="radio"
-                name="safety"
-                id="unsafe"
-                value="false"
-                ngModel
-              />
-              <label class="safe-space" for="unsafe">Unsafe</label>
+        <h3>What Happened Here?</h3>
+        <label for="name">Name of Location</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Optional"
+          ngModel
+        />
+        <label for="address">Address of Location</label>
+        <input
+          type="text"
+          name="address"
+          id="address"
+          placeholder="Optional"
+          ngModel
+        />
+        <label for="phone">Phone Number</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          placeholder="Optional"
+          ngModel
+        />
+        <label for="report">Make Your Report</label>
+        <input
+          class="form-input"
+          type="text"
+          name="report"
+          id="report"
+          placeholder="Tell us about your experience"
+          ngModel
+        />
+        <label for="details">What Made You Feel Safe or Unsafe?</label>
+        <input
+          class="form-input"
+          type="text"
+          name="details"
+          id="details"
+          placeholder="Are the staff and/or patrons inclusive?"
+          ngModel
+        />
+        <div>
+          <p class="safe-p">Safe Place?</p>
+          <input type="radio" name="safety" id="safe" value="true" ngModel />
+          <label class="safe-space" for="safe">Safe</label>
+          <input
+            class="safe-space"
+            type="radio"
+            name="safety"
+            id="unsafe"
+            value="false"
+            ngModel
+          />
+          <label class="safe-space" for="unsafe">Unsafe</label>
             </div>
             <p>Click on Map to Set Pin</p>
             <input
