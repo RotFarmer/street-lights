@@ -47,7 +47,7 @@
         #reportForm="ngForm"
         (ngSubmit)="submitPost(reportForm)"
       >
-        <h3>Sighting</h3>
+        <h3>What Happened Here?</h3>
         <label for="name">Name of Location</label>
         <input
           type="text"
@@ -56,7 +56,7 @@
           placeholder="Optional"
           ngModel
         />
-        <label for="address">Do you have an Address?</label>
+        <label for="address">Address of Location</label>
         <input
           type="text"
           name="address"
@@ -64,9 +64,7 @@
           placeholder="Optional"
           ngModel
         />
-        <label for="phone"
-          >Do you have the phone number for the location?</label
-        >
+        <label for="phone">Phone Number</label>
         <input
           type="tel"
           id="phone"
@@ -77,10 +75,20 @@
         />
         <label for="report">Make Your Report</label>
         <input
+          class="form-input"
           type="text"
           name="report"
           id="report"
-          placeholder="What happened?"
+          placeholder="Tell us about your experience"
+          ngModel
+        />
+        <label for="details">What Made You Feel Safe or Unsafe?</label>
+        <input
+          class="form-input"
+          type="text"
+          name="details"
+          id="details"
+          placeholder="Are the staff and/or patrons inclusive?"
           ngModel
         />
         <div>

@@ -353,10 +353,10 @@ export class MainComponent implements OnInit {
     this.userMarkers.push({
       position: this.center,
       label: {
-        color: 'red',
-        text: 'Drag to where you would like to Report',
+        color: 'white',
+        text: 'Click to Move & Make a Report',
       },
-      title: 'Drag to where you would like to Report',
+      title: 'Click to Move & Make a Report',
       options: { draggable: true },
     });
   }

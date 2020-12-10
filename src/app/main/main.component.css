@@ -11,8 +11,12 @@ input,
 label {
   justify-content: space-between;
   color: black;
+  padding: 10px;
+  word-wrap: break-word;
 }
-
+.form-input {
+  padding: 15px;
+}
 .form-container {
   background-color: #fdc029;
   border-radius: 10px;
