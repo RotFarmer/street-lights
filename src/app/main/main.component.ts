@@ -282,12 +282,12 @@ export class MainComponent implements OnInit {
             lng: position.coords.longitude,
           };
 
-          this.addUserMarker();
+          // this.addUserMarker();
         });
       } else {
         this.service.getLocation(search).subscribe((response) => {
           this.center = response.results[0].geometry.location;
-          this.addUserMarker();
+          // this.addUserMarker();
         });
         // this.center = {
         //   lat: parseFloat(lat),
@@ -367,6 +367,7 @@ export class MainComponent implements OnInit {
   };
 
   openForm = () => {
+    // this.addUserMarker();
     this.hide = !this.hide;
   };
 
