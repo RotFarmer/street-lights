@@ -7,14 +7,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #171820;
 }
 
-h1 {
+.header-title {
   display: flex;
   font-family: "lemon-tuesday";
   font-size: 25px;
   white-space: nowrap;
   padding-left: 10px;
+  color: #aa3d01;
 }
 
 .nav {
@@ -24,6 +26,10 @@ h1 {
   padding-right: 10px;
   font-size: 25px;
 }
+.nav-btn {
+  color: #aa3d01;
+}
+
 .search-bar {
   white-space: nowrap;
 }

@@ -257,6 +257,7 @@ export class MainComponent implements OnInit {
   hide: boolean = true;
   newLat: number;
   newLong: number;
+  opened: boolean = false;
 
   constructor(
     private service: StreetlightsService,
@@ -373,5 +374,9 @@ export class MainComponent implements OnInit {
 
   submitPost = (form: NgForm) => {
     this.service.createReport(form);
+  };
+
+  toggleNav = () => {
+    this.opened = !this.opened;
   };
 }

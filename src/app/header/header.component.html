@@ -1,5 +1,5 @@
 <header class="header">
-  <h1>Street Lights</h1>
+  <h1 class="header-title">Street Lights</h1>
   <form
     class="search-bar"
     #searchForm="ngForm"
@@ -15,7 +15,7 @@
       ngModel
     />
   </form>
-  <div class="nav">
-    <i class="fas fa-bars"></i>
+  <div class="nav" (click)="openNav()">
+    <i class="fas fa-bars nav-btn"></i>
   </div>
 </header>
