@@ -1,52 +1,58 @@
-<app-header></app-header>
-<google-map
-  height="659px"
-  width="100%"
-  [zoom]="zoom"
-  [center]="center"
-  [options]="options"
->
-  <map-marker
-    #markerElem="mapMarker"
-    *ngFor="let marker of markers"
-    [position]="marker.position"
-    [label]="marker.label"
-    [title]="marker.title"
-    [options]="marker.options"
-    (mapClick)="openInfo(markerElem, marker)"
-  >
-  </map-marker>
-
-  <map-marker
-    class="btn"
-    #userMarkerElem="mapMarker"
-    *ngFor="let marker of userMarkers"
-    [position]="marker.position"
-    [label]="marker.label"
-    [title]="marker.title"
-    [options]="marker.options"
-    (mapClick)="openForm()"
-    (mapDragend)="setMarkerLocation($event)"
-  >
-  </map-marker>
-  <map-info-window>
-    <p>{{ locationName }}</p>
-    <p>{{ locationAddress }}</p>
-    <p>{{ locationPhone }}</p>
-    <p>{{ locationInfo }}</p>
-  </map-info-window>
-  <div>
-    <a class="btn" (click)="addUserMarker()">
-      <div>Make a Report!</div>
-    </a>
-  </div>
-  <section class="home-container">
-    <div class="form-container" [class.hide]="hide === true">
-      <form
-        class="form"
-        #reportForm="ngForm"
-        (ngSubmit)="submitPost(reportForm)"
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [(opened)]="opened" position="end" class="side-nav">
+    <button (click)="toggleNav()">X</button>
+    Start
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header (navEvent)="toggleNav()"></app-header>
+    <google-map
+      height="659px"
+      width="100%"
+      [zoom]="zoom"
+      [center]="center"
+      [options]="options"
+    >
+      <map-marker
+        #markerElem="mapMarker"
+        *ngFor="let marker of markers"
+        [position]="marker.position"
+        [label]="marker.label"
+        [title]="marker.title"
+        [options]="marker.options"
+        (mapClick)="openInfo(markerElem, marker)"
       >
+      </map-marker>
+
+      <map-marker
+        class="btn"
+        #userMarkerElem="mapMarker"
+        *ngFor="let marker of userMarkers"
+        [position]="marker.position"
+        [label]="marker.label"
+        [title]="marker.title"
+        [options]="marker.options"
+        (mapClick)="openForm()"
+        (mapDragend)="setMarkerLocation($event)"
+      >
+              </map-marker>
+      <map-info-window>
+        <p>{{ locationName }}</p>
+        <p>{{ locationAddress }}</p>
+        <p>{{ locationPhone }}</p>
+        <p>{{ locationInfo }}</p>
+      </map-info-window>
+      <div>
+        <a class="btn" (click)="addUserMarker()">
+          <div>Make a Report!</div>
+        </a>
+      </div>
+      <section class="home-container">
+        <div class="form-container" [class.hide]="hide === true">
+          <form
+            class="form"
+            #reportForm="ngForm"
+            (ngSubmit)="submitPost(reportForm)"
+          >
         <h3>What Happened Here?</h3>
         <label for="name">Name of Location</label>
         <input
@@ -104,29 +110,31 @@
             ngModel
           />
           <label class="safe-space" for="unsafe">Unsafe</label>
+            </div>
+            <p>Click on Map to Set Pin</p>
+            <input
+              type="hidden"
+              name="lat"
+              id="lat"
+              placeholder="lat"
+              ngModel="{{ newLat }}"
+            />
+            <input
+              type="hidden"
+              name="long"
+              id="long"
+              placeholder="long"
+              ngModel="{{ newLong }}"
+            />
+            <button class="submit-btn">Submit Your Report</button>
+          </form>
         </div>
-        <p>Click on Map to Set Pin</p>
-        <input
-          type="hidden"
-          name="lat"
-          id="lat"
-          placeholder="lat"
-          ngModel="{{ newLat }}"
-        />
-        <input
-          type="hidden"
-          name="long"
-          id="long"
-          placeholder="long"
-          ngModel="{{ newLong }}"
-        />
-        <button class="submit-btn">Submit Your Report</button>
-      </form>
-    </div>
-  </section>
-</google-map>
+      </section>
+    </google-map>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 <!-- Use custom zoom buttons -->
 <!-- <button (click)="zoomIn()">Zoom in</button>
-<button (click)="zoomOut()">Zoom out</button> -->
+  <button (click)="zoomOut()">Zoom out</button> -->
 
 <!-- (mapClick)="click($event)" -->

@@ -125,3 +125,7 @@ div {
   height: 100%;
   filter: blur(1rem);
 }
+
+.side-nav {
+  width: 300px;
+}
