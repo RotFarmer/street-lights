@@ -1,12 +1,33 @@
 <app-header></app-header>
-<google-map height="659px" width="100%" [zoom]="zoom" [center]="center" [options]="options">
-  <map-marker #markerElem="mapMarker" *ngFor="let marker of markers" [position]="marker.position" [label]="marker.label"
-    [title]="marker.title" [options]="marker.options" (mapClick)="openInfo(markerElem, marker)">
+<google-map
+  height="659px"
+  width="100%"
+  [zoom]="zoom"
+  [center]="center"
+  [options]="options"
+>
+  <map-marker
+    #markerElem="mapMarker"
+    *ngFor="let marker of markers"
+    [position]="marker.position"
+    [label]="marker.label"
+    [title]="marker.title"
+    [options]="marker.options"
+    (mapClick)="openInfo(markerElem, marker)"
+  >
   </map-marker>
 
-  <map-marker #userMarkerElem="mapMarker" *ngFor="let marker of userMarkers" [position]="marker.position"
-    [label]="marker.label" [title]="marker.title" [options]="marker.options"
-    (mapClick)="openInfo(userMarkerElem, marker)" (mapDragend)="setMarkerLocation($event)">
+  <map-marker
+    class="btn"
+    #userMarkerElem="mapMarker"
+    *ngFor="let marker of userMarkers"
+    [position]="marker.position"
+    [label]="marker.label"
+    [title]="marker.title"
+    [options]="marker.options"
+    (mapClick)="openForm()"
+    (mapDragend)="setMarkerLocation($event)"
+  >
   </map-marker>
   <map-info-window>
     <p>{{ locationName }}</p>
@@ -15,34 +36,82 @@
     <p>{{ locationInfo }}</p>
   </map-info-window>
   <div>
-    <a class="btn" (click)="openForm()">
-      <div>
-        Make a Report!
-      </div>
+    <a class="btn" (click)="addUserMarker()">
+      <div>Make a Report!</div>
     </a>
   </div>
   <section class="home-container">
     <div class="form-container" [class.hide]="hide === true">
-      <form class="form" #reportForm="ngForm" (ngSubmit)="submitPost(reportForm)">
+      <form
+        class="form"
+        #reportForm="ngForm"
+        (ngSubmit)="submitPost(reportForm)"
+      >
         <h3>Sighting</h3>
         <label for="name">Name of Location</label>
-        <input type="text" name="name" id="name" placeholder="Optional" ngModel />
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Optional"
+          ngModel
+        />
         <label for="address">Do you have an Address?</label>
-        <input type="text" name="address" id="address" placeholder="Optional" ngModel />
-        <label for="phone">Do you have the phone number for the location?</label>
-        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Optional" ngModel />
+        <input
+          type="text"
+          name="address"
+          id="address"
+          placeholder="Optional"
+          ngModel
+        />
+        <label for="phone"
+          >Do you have the phone number for the location?</label
+        >
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          placeholder="Optional"
+          ngModel
+        />
         <label for="report">Make Your Report</label>
-        <input type="text" name="report" id="report" placeholder="What happened?" ngModel />
+        <input
+          type="text"
+          name="report"
+          id="report"
+          placeholder="What happened?"
+          ngModel
+        />
         <div>
           <p class="safe-p">Safe Place?</p>
           <input type="radio" name="safety" id="safe" value="true" ngModel />
           <label class="safe-space" for="safe">Safe</label>
-          <input class="safe-space" type="radio" name="safety" id="unsafe" value="false" ngModel />
+          <input
+            class="safe-space"
+            type="radio"
+            name="safety"
+            id="unsafe"
+            value="false"
+            ngModel
+          />
           <label class="safe-space" for="unsafe">Unsafe</label>
         </div>
         <p>Click on Map to Set Pin</p>
-        <input type="hidden" name="lat" id="lat" placeholder="lat" ngModel="{{ newLat }}" />
-        <input type="hidden" name="long" id="long" placeholder="long" ngModel="{{ newLong }}" />
+        <input
+          type="hidden"
+          name="lat"
+          id="lat"
+          placeholder="lat"
+          ngModel="{{ newLat }}"
+        />
+        <input
+          type="hidden"
+          name="long"
+          id="long"
+          placeholder="long"
+          ngModel="{{ newLong }}"
+        />
         <button class="submit-btn">Submit Your Report</button>
       </form>
     </div>
