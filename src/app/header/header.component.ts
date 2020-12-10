@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StreetlightsService } from '../streetlights.service';
@@ -9,7 +9,7 @@ import { StreetlightsService } from '../streetlights.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  // @Output() centerEvent = new EventEmitter<google.maps.LatLngLiteral>();
+  @Output() navEvent = new EventEmitter<any>();
   constructor(private service: StreetlightsService, private router: Router) {}
 
   ngOnInit(): void {}
@@ -25,5 +25,9 @@ export class HeaderComponent implements OnInit {
     // });
     // this.router.navigate(['/main']);
     // location.reload();
+  };
+
+  openNav = () => {
+    this.navEvent.emit();
   };
 }
