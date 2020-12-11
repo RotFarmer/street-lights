@@ -1,7 +1,10 @@
 <mat-sidenav-container>
   <mat-sidenav mode="side" [(opened)]="opened" position="end" class="side-nav">
-    <button (click)="toggleNav()">X</button>
-    Start
+    <div class="side-nav">
+      <button class="nav-close-btn" (click)="toggleNav()">X</button>
+      <button>Home</button>
+      <button>About</button>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-header (navEvent)="toggleNav()"></app-header>
@@ -31,15 +34,17 @@
         [label]="marker.label"
         [title]="marker.title"
         [options]="marker.options"
-        (mapClick)="openForm()"
+        (mapClick)="openNewForm()"
         (mapDragend)="setMarkerLocation($event)"
       >
-              </map-marker>
+      </map-marker>
       <map-info-window>
         <p>{{ locationName }}</p>
         <p>{{ locationAddress }}</p>
         <p>{{ locationPhone }}</p>
-        <p>{{ locationInfo }}</p>
+        <!-- <p>{{ locationInfo }}</p> -->
+        <button>View all Reports</button>
+        <button (click)="openForm()">Add a new Report</button>
       </map-info-window>
       <div>
         <a class="btn" (click)="addUserMarker()">
@@ -50,66 +55,100 @@
         <div class="form-container" [class.hide]="hide === true">
           <form
             class="form"
+            #addReportForm="ngForm"
+            (ngSubmit)="submitReport(addReportForm)"
+          >
+            <h3>What Happened Here?</h3>
+            <label for="report">Make Your Report</label>
+            <input
+              class="form-input"
+              type="text"
+              name="report"
+              id="report"
+              placeholder="Tell us about your experience"
+              ngModel
+            />
+            <label for="date">When did it Happen?</label>
+            <input
+              type="text"
+              name="date"
+              id="date"
+              placeholder="DD-MM-YYYY"
+              ngModel
+            />
+            <input type="hidden" name="id" id="id" ngModel="{{ reportId }}" />
+            <button class="submit-btn">Submit Your Report</button>
+          </form>
+        </div>
+        <div class="form-container" [class.hide]="hideNew === true">
+          <form
+            class="form"
             #reportForm="ngForm"
             (ngSubmit)="submitPost(reportForm)"
           >
-        <h3>What Happened Here?</h3>
-        <label for="name">Name of Location</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          placeholder="Optional"
-          ngModel
-        />
-        <label for="address">Address of Location</label>
-        <input
-          type="text"
-          name="address"
-          id="address"
-          placeholder="Optional"
-          ngModel
-        />
-        <label for="phone">Phone Number</label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          placeholder="Optional"
-          ngModel
-        />
-        <label for="report">Make Your Report</label>
-        <input
-          class="form-input"
-          type="text"
-          name="report"
-          id="report"
-          placeholder="Tell us about your experience"
-          ngModel
-        />
-        <label for="details">What Made You Feel Safe or Unsafe?</label>
-        <input
-          class="form-input"
-          type="text"
-          name="details"
-          id="details"
-          placeholder="Are the staff and/or patrons inclusive?"
-          ngModel
-        />
-        <div>
-          <p class="safe-p">Safe Place?</p>
-          <input type="radio" name="safety" id="safe" value="true" ngModel />
-          <label class="safe-space" for="safe">Safe</label>
-          <input
-            class="safe-space"
-            type="radio"
-            name="safety"
-            id="unsafe"
-            value="false"
-            ngModel
-          />
-          <label class="safe-space" for="unsafe">Unsafe</label>
+            <h3>What Happened Here?</h3>
+            <label for="name">Name of Location</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Optional"
+              ngModel
+            />
+            <label for="address">Address of Location</label>
+            <input
+              type="text"
+              name="address"
+              id="address"
+              placeholder="Optional"
+              ngModel
+            />
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              placeholder="Optional"
+              ngModel
+            />
+            <label for="report">Make Your Report</label>
+            <input
+              class="form-input"
+              type="text"
+              name="report"
+              id="report"
+              placeholder="Tell us about your experience"
+              ngModel
+            />
+            <label for="details">What Made You Feel Safe or Unsafe?</label>
+            <input
+              class="form-input"
+              type="text"
+              name="details"
+              id="details"
+              placeholder="Are the staff and/or patrons inclusive?"
+              ngModel
+            />
+            <div>
+              <p class="safe-p">Safe Place?</p>
+              <input
+                type="radio"
+                name="safety"
+                id="safe"
+                value="true"
+                ngModel
+              />
+              <label class="safe-space" for="safe">Safe</label>
+              <input
+                class="safe-space"
+                type="radio"
+                name="safety"
+                id="unsafe"
+                value="false"
+                ngModel
+              />
+              <label class="safe-space" for="unsafe">Unsafe</label>
             </div>
             <p>Click on Map to Set Pin</p>
             <input

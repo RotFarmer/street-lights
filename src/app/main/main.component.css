@@ -128,4 +128,14 @@ div {
 
 .side-nav {
   width: 300px;
+  background-color: #1d1d1d;
+  display: flex;
+  flex-direction: column;
+  /* position: relative; */
+}
+
+.nav-close-btn {
+  position: relative;
+  right: 125px;
+  bottom: 300px;
 }

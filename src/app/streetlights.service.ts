@@ -10,7 +10,7 @@ import { googleKey } from './secrets';
   providedIn: 'root',
 })
 export class StreetlightsService {
-  baseUrl: string = 'http://localhost:3000/places';
+  baseUrl: string = 'http://localhost:3000';
   baseLocationUrl: string =
     'https://maps.googleapis.com/maps/api/geocode/json?';
   report: Report;
@@ -26,31 +26,48 @@ export class StreetlightsService {
     });
   };
 
+  getReports = (location: any) => {
+    return this.http.get(`${this.baseUrl}/reports`, {
+      params: {
+        id: location.id,
+      },
+    });
+  };
   // userSearchCenter = (location: google.maps.LatLngLiteral) => {
   //   this.userCenter = location;
   // };
 
   getPlaces = (): any => {
-    return this.http.get(`${this.baseUrl}`);
+    return this.http.get(`${this.baseUrl}/places`);
   };
 
-  postReport = (report: Report): any => {
-    return this.http.post(`${this.baseUrl}`, report);
+  postReport = (report): any => {
+    return this.http.post(`${this.baseUrl}/reports`, report);
   };
 
-  createReport = (form: NgForm) => {
-    let newReport = form.value;
-    this.report = {
-      name: newReport.name,
-      address: newReport.address,
-      phonenumber: newReport.phone,
-      lat: newReport.lat,
-      long: newReport.long,
-      safe: newReport.safety,
-      info: newReport.report,
+  // createReport = (form: NgForm) => {
+  //   let newReport = form.value;
+  //   this.report = {
+  //     name: newReport.name,
+  //     address: newReport.address,
+  //     phonenumber: newReport.phone,
+  //     lat: newReport.lat,
+  //     long: newReport.long,
+  //     safe: newReport.safety,
+  //     info: newReport.report,
+  //   };
+  //   console.log(this.report);
+  //   this.postReport(this.report).subscribe(() => {});
+  //   location.reload();
+  // };
+
+  addReport = (form: NgForm) => {
+    let newReport = {
+      place_id: form.value.id,
+      report: form.value.report,
+      date: form.value.date,
     };
-    console.log(this.report);
-    this.postReport(this.report).subscribe(() => {});
+    this.postReport(newReport).subscribe(() => {});
     location.reload();
   };
 }
