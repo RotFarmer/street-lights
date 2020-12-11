@@ -13,14 +13,9 @@ export class MainComponent implements OnInit {
   @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
   zoom = 15;
   center: google.maps.LatLngLiteral;
-  // userCenter: google.maps.LatLngLiteral;
   options: google.maps.MapOptions = {
-    // mapTypeId: 'map',
-    // zoomControl: false,
     scrollwheel: false,
     disableDoubleClickZoom: true,
-    // maxZoom: 15,
-    // minZoom: 8,
     styles: [
       {
         elementType: 'geometry',
@@ -237,24 +232,15 @@ export class MainComponent implements OnInit {
   };
   markers: any[] = [];
   userMarkers: any[] = [];
-  places: any[] = [
-    // {
-    //   name: 'the edge',
-    //   address: '4149 18th street san fransisco california 94114',
-    //   phone: '+14158634027',
-    //   info: 'this is a bar',
-    //   safety: 'lgbt',
-    //   lat: 37.7607392,
-    //   lng: -122.4381946,
-    // },
-  ];
-  // infoContent = ""
+  places: any[] = [];
   locationName = '';
   locationAddress = '';
   locationPhone = '';
   locationInfo = '';
-  // locationSafety = "";
+  reports: any = [];
+  reportId: any;
   hide: boolean = true;
+  hideNew: boolean = true;
   newLat: number;
   newLong: number;
   opened: boolean = false;
@@ -266,47 +252,28 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.center = {
-    //   lat: 37.76658017218035,
-    //   lng: -122.4381946,
-    // };
-    // console.log(this.service.userCenter);
-
     this.route.queryParamMap.subscribe((response) => {
       let search = response.get('search');
-      // let lat = response.get('lat');
-      // let lng = response.get('lng');
       if (!search) {
         navigator.geolocation.getCurrentPosition((position) => {
           this.center = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-
-          // this.addUserMarker();
         });
       } else {
         this.service.getLocation(search).subscribe((response) => {
           this.center = response.results[0].geometry.location;
-          // this.addUserMarker();
         });
-        // this.center = {
-        //   lat: parseFloat(lat),
-        //   lng: parseFloat(lng),
-        // };
       }
     });
 
     this.getPlaces();
-    // this.places.forEach((place) => {
-    //   this.addMarker(place);
-    // });
   }
 
   getPlaces = () => {
     this.service.getPlaces().subscribe((response) => {
       this.places = response;
-      // console.log(response);
       this.places.forEach((place) => {
         this.addMarker(place);
       });
@@ -322,12 +289,21 @@ export class MainComponent implements OnInit {
   }
 
   openInfo(marker: MapMarker, content) {
-    console.log(marker);
+    console.log(content);
     this.locationName = content.name;
     this.locationAddress = content.address;
     this.locationPhone = content.phone;
     this.locationInfo = content.info;
     this.infoWindow.open(marker);
+    this.openReports(content);
+  }
+
+  openReports(marker) {
+    this.service.getReports(marker).subscribe((response) => {
+      this.reports = response;
+      this.reportId = this.reports[0].place_id;
+      console.log(this.reports);
+    });
   }
 
   addMarker(place): void {
@@ -340,12 +316,14 @@ export class MainComponent implements OnInit {
         color: 'green',
         text: place.name,
       },
+      options: {},
       title: place.name,
       name: place.name,
       address: place.address,
       phone: place.phonenumber,
       info: place.info,
       safety: place.safety,
+      id: place.id,
     });
     console.log(this.markers);
   }
@@ -367,13 +345,20 @@ export class MainComponent implements OnInit {
     this.newLong = event.latLng.lng();
   };
 
+  openNewForm = () => {
+    this.hideNew = !this.hideNew;
+  };
+
   openForm = () => {
-    // this.addUserMarker();
     this.hide = !this.hide;
   };
 
   submitPost = (form: NgForm) => {
-    this.service.createReport(form);
+    // this.service.createReport(form);
+  };
+
+  submitReport = (form: NgForm) => {
+    this.service.addReport(form);
   };
 
   toggleNav = () => {
