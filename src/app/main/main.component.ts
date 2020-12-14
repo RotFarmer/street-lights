@@ -344,9 +344,9 @@ export class MainComponent implements OnInit {
       position: this.center,
       label: {
         color: 'white',
-        text: 'Click to Move & Make a Report',
+        text: 'Click to Make a Report or Drag to a New Location',
       },
-      title: 'Click to Move & Make a Report',
+      title: 'Click to Make a Report or Drag to a New Location',
       options: { draggable: true },
     });
   }
