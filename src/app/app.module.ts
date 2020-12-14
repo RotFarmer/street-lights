@@ -10,9 +10,10 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AboutPageComponent } from './about-page/about-page.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, MainComponent],
+  declarations: [AppComponent, HeaderComponent, MainComponent, AboutPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
