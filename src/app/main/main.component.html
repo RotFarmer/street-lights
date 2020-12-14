@@ -43,7 +43,7 @@
         <p>{{ locationAddress }}</p>
         <p>{{ locationPhone }}</p>
         <!-- <p>{{ locationInfo }}</p> -->
-        <button>View all Reports</button>
+        <button (click)="showReports()">View all Reports</button>
         <button (click)="openForm()">Add a new Report</button>
       </map-info-window>
       <div>
@@ -51,6 +51,18 @@
           <div>Make a Report!</div>
         </a>
       </div>
+      <section [class.hide]="hideReports === true">
+        <h3>Reports for {{ locationName }}</h3>
+        <div *ngFor="let report of reports">
+          <p>
+            {{ report.date }}
+          </p>
+          <p>
+            {{ report.report }}
+          </p>
+        </div>
+        <button (click)="showReports()">Close Reports</button>
+      </section>
       <section class="home-container">
         <div class="form-container" [class.hide]="hide === true">
           <form
@@ -59,6 +71,7 @@
             (ngSubmit)="submitReport(addReportForm)"
           >
             <h3>What Happened Here?</h3>
+            <div (click)="openForm()">X</div>
             <label for="report">Make Your Report</label>
             <input
               class="form-input"
@@ -87,6 +100,7 @@
             (ngSubmit)="submitPost(reportForm)"
           >
             <h3>What Happened Here?</h3>
+            <p (click)="closeNewForm()">X</p>
             <label for="name">Name of Location</label>
             <input
               type="text"
@@ -112,24 +126,6 @@
               placeholder="Optional"
               ngModel
             />
-            <label for="report">Make Your Report</label>
-            <input
-              class="form-input"
-              type="text"
-              name="report"
-              id="report"
-              placeholder="Tell us about your experience"
-              ngModel
-            />
-            <label for="details">What Made You Feel Safe or Unsafe?</label>
-            <input
-              class="form-input"
-              type="text"
-              name="details"
-              id="details"
-              placeholder="Are the staff and/or patrons inclusive?"
-              ngModel
-            />
             <div>
               <p class="safe-p">Safe Place?</p>
               <input
@@ -150,16 +146,15 @@
               />
               <label class="safe-space" for="unsafe">Unsafe</label>
             </div>
-            <p>Click on Map to Set Pin</p>
             <input
-              type="hidden"
+              type="number"
               name="lat"
               id="lat"
               placeholder="lat"
               ngModel="{{ newLat }}"
             />
             <input
-              type="hidden"
+              type="number"
               name="long"
               id="long"
               placeholder="long"
