@@ -233,6 +233,7 @@ export class MainComponent implements OnInit {
   markers: any[] = [];
   userMarkers: any[] = [];
   places: any[] = [];
+  placesId: number = 0;
   locationName = '';
   locationAddress = '';
   locationPhone = '';
@@ -241,6 +242,7 @@ export class MainComponent implements OnInit {
   reportId: any;
   hide: boolean = true;
   hideNew: boolean = true;
+  hideReports: boolean = true;
   newLat: number;
   newLong: number;
   opened: boolean = false;
@@ -260,10 +262,14 @@ export class MainComponent implements OnInit {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
+          this.newLat = this.center.lat;
+          this.newLong = this.center.lng;
         });
       } else {
         this.service.getLocation(search).subscribe((response) => {
           this.center = response.results[0].geometry.location;
+          this.newLat = this.center.lat;
+          this.newLong = this.center.lng;
         });
       }
     });
@@ -274,9 +280,14 @@ export class MainComponent implements OnInit {
   getPlaces = () => {
     this.service.getPlaces().subscribe((response) => {
       this.places = response;
+      this.placesId = this.places[0].id;
       this.places.forEach((place) => {
         this.addMarker(place);
+        if (place.id > this.placesId) {
+          this.placesId = place.id;
+        }
       });
+      console.log(this.placesId);
     });
   };
 
@@ -349,12 +360,25 @@ export class MainComponent implements OnInit {
     this.hideNew = !this.hideNew;
   };
 
+  closeNewForm = () => {
+    this.hideNew = !this.hideNew;
+    this.userMarkers.splice(0);
+  };
+
   openForm = () => {
     this.hide = !this.hide;
   };
 
+  showReports = () => {
+    this.hideReports = !this.hideReports;
+  };
+
   submitPost = (form: NgForm) => {
-    // this.service.createReport(form);
+    this.service.createPlace(form);
+    this.placesId++;
+    this.reportId = this.placesId;
+    this.openNewForm();
+    this.openForm();
   };
 
   submitReport = (form: NgForm) => {

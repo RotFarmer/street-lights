@@ -41,25 +41,28 @@ export class StreetlightsService {
     return this.http.get(`${this.baseUrl}/places`);
   };
 
+  postPlace = (place): any => {
+    return this.http.post(`${this.baseUrl}/places`, place);
+  };
+
   postReport = (report): any => {
     return this.http.post(`${this.baseUrl}/reports`, report);
   };
 
-  // createReport = (form: NgForm) => {
-  //   let newReport = form.value;
-  //   this.report = {
-  //     name: newReport.name,
-  //     address: newReport.address,
-  //     phonenumber: newReport.phone,
-  //     lat: newReport.lat,
-  //     long: newReport.long,
-  //     safe: newReport.safety,
-  //     info: newReport.report,
-  //   };
-  //   console.log(this.report);
-  //   this.postReport(this.report).subscribe(() => {});
-  //   location.reload();
-  // };
+  createPlace = (form: NgForm) => {
+    let newPlace = form.value;
+
+    let place = {
+      name: newPlace.name,
+      address: newPlace.address,
+      phonenumber: newPlace.phone,
+      lat: newPlace.lat,
+      long: newPlace.long,
+      safe: newPlace.safety,
+    };
+
+    this.postPlace(place).subscribe(() => {});
+  };
 
   addReport = (form: NgForm) => {
     let newReport = {
