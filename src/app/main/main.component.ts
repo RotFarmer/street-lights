@@ -324,7 +324,7 @@ export class MainComponent implements OnInit {
         lng: parseFloat(place.long),
       },
       label: {
-        color: 'green',
+        color: '#fdc029',
         text: place.name,
       },
       options: {},

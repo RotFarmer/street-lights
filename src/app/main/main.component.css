@@ -10,7 +10,7 @@
 input,
 label {
   justify-content: space-between;
-  color: black;
+  color: #171820;
   padding: 10px;
   word-wrap: break-word;
 }
@@ -18,17 +18,49 @@ label {
   padding: 15px;
 }
 .form-container {
-  background-color: #fdc029;
+  background-color: none;
   border-radius: 10px;
   display: flex;
   position: absolute;
   z-index: 2;
-  top: 275px;
-  left: 100px;
+  top: 240px;
+  left: 5px;
   height: 50%;
   /* height: 200px;
   width: 200px;
   border: black 1px solid; */
+}
+.x{
+  position:absolute;
+  display: flex;
+  top:-140px;
+  right:20px;
+  color: #aa3d01;
+  background-color: #fdc029;
+  border-radius:50%;
+  height:20px;
+  width:20px;
+  justify-content: center;
+  align-items: center;
+}
+.x:hover{
+  cursor:pointer;
+}
+.x2{
+  position:absolute;
+  display: flex;
+  top:-20px;
+  right:20px;
+  color: #aa3d01;
+  background-color: #fdc029;
+  border-radius:50%;
+  height:20px;
+  width:20px;
+  justify-content: center;
+  align-items: center;
+}
+.x2:hover{
+  cursor:pointer;
 }
 
 .hide {
@@ -40,34 +72,66 @@ label {
   flex-direction: column;
   padding: 0;
 }
+.whaHappun{
+  font-size: 22px;
+}
 .safe-p {
-  color: #fdc029;
+  color: #aa3d01;
   font: bolder;
   font-size: 25px;
+  margin-left:10px;
 }
 .safe-space {
-  color: #fdc029;
+  color: #aa3d01;
+  
 }
 
 ::placeholder {
-  color: #df861d;
-}
-.submit-btn {
-  background-color: black;
   color: #aa3d01;
 }
+.submit-btn {
+  background-color: #171820;
+  color: #aa3d01;
+  border-radius:25px;
+  height:40px;;
+}
 
-html,
+/* html,
 body,
 div {
   height: 100%;
   background-color: #171820;
-}
+} */
 
 div {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.bubble{
+  background-color: #fdc029;
+  border-radius:25px;
+  margin:5px;
+  transition: all 0.5s;
+  display: flex;
+  flex-direction: column;
+  padding:10px;
+}
+.bubble-safe{
+  background-color: #fdc029;
+  border-radius:25px;
+  margin:5px;
+  transition: all 0.5s;
+  display: flex;
+  padding:5px;
+}
+.textBox{
+background-color: rgba(0,0,0,0);
+border-top-style: hidden;
+border-right-style: hidden;
+border-left-style: hidden;
+border-bottom: #aa3d01 1px solid ;
+width:215px;
 }
 
 .btn {
@@ -88,8 +152,11 @@ div {
   display: flex;
   position: absolute;
   z-index: 1;
-  top: 642px;
-  left: 20px;
+  top: 630px;
+  left: 5px;
+}
+.btn:hover{
+  cursor:pointer;
 }
 
 .btn div {
@@ -128,14 +195,16 @@ div {
 
 .side-nav {
   width: 300px;
-  background-color: #1d1d1d;
+  background-color: #171820;
   display: flex;
   flex-direction: column;
   /* position: relative; */
 }
 
-.nav-close-btn {
+/* .nav-close-btn {
   position: relative;
   right: 125px;
   bottom: 300px;
-}
+ } */
+  
+
