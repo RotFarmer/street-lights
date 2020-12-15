@@ -30,4 +30,8 @@ export class HeaderComponent implements OnInit {
   openNav = () => {
     this.navEvent.emit();
   };
+
+  mainRoute = () => {
+    this.router.navigate(['/main']);
+  };
 }
