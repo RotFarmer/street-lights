@@ -6,7 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about-page.component.css'],
 })
 export class AboutPageComponent implements OnInit {
+  opened: boolean = false;
   constructor() {}
 
   ngOnInit(): void {}
+
+  toggleNav = () => {
+    this.opened = !this.opened;
+  };
 }

@@ -1,7 +1,26 @@
+body,
+section,
+h1,
+.about-container,
+.img-container {
+  background-color: #171820;
+}
+.img-container {
+}
 .about-container {
   color: #bcb6ae;
 }
 
-/* .search-bar.hidden {
-  visibility: hidden;
-} */
+.side-nav {
+  width: 300px;
+  background-color: #171820;
+  display: flex;
+  flex-direction: column;
+  /* position: relative; */
+}
+
+.nav-close-btn {
+  position: relative;
+  right: 125px;
+  bottom: 300px;
+}

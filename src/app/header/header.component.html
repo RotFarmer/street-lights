@@ -1,19 +1,8 @@
 <header class="header">
-  <h1 class="header-title">Street Lights</h1>
-  <form
-    class="search-bar"
-    #searchForm="ngForm"
-    (ngSubmit)="getLocation(searchForm)"
-  >
+  <h1 class="header-title" (click)="mainRoute()">Street Lights</h1>
+  <form class="search-bar" #searchForm="ngForm" (ngSubmit)="getLocation(searchForm)">
     <label for="text"></label>
-    <input
-      type="text"
-      name="search"
-      id="search"
-      class="search-input"
-      placeholder="search..."
-      ngModel
-    />
+    <input type="text" name="search" id="search" class="search-input" placeholder="search..." ngModel />
   </form>
   <div class="nav" (click)="openNav()">
     <i class="fas fa-bars nav-btn"></i>
