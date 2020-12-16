@@ -319,18 +319,19 @@ export class MainComponent implements OnInit {
 
   addMarker(place): void {
     let newMarker = {};
-    if (place.safety) {
+    if (place.safe) {
       newMarker = {
         position: {
           lat: parseFloat(place.lat),
           lng: parseFloat(place.long),
         },
-        label: {
-          color: '#fdc029',
-          text: place.name,
-        },
+        // label: {
+        //   color: '#fdc029',
+        //   text: place.name,
+        // },
         options: {
-          icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+          icon: {url:'http://maps.google.com/mapfiles/ms/icons/green.png',
+          labelOrigin: new google.maps.Point(15,5)}
         },
 
         title: place.name,
@@ -338,7 +339,7 @@ export class MainComponent implements OnInit {
         address: place.address,
         phone: place.phonenumber,
         info: place.info,
-        safety: place.safety,
+        safety: place.safe,
         id: place.id,
       };
     } else {
@@ -347,19 +348,20 @@ export class MainComponent implements OnInit {
           lat: parseFloat(place.lat),
           lng: parseFloat(place.long),
         },
-        label: {
-          color: '#fdc029',
-          text: place.name,
-        },
+        // label: {
+        //   color: '#fdc029',
+        //   text: place.name,
+        // },
         options: {
-          icon: 'http://maps.google.com/mapfiles/ms/icons/red.png',
+          icon: {url:'http://maps.google.com/mapfiles/ms/icons/red.png',
+          labelOrigin: new google.maps.Point(15,5)}
         },
         title: place.name,
         name: place.name,
         address: place.address,
         phone: place.phonenumber,
         info: place.info,
-        safety: place.safety,
+        safety: place.safe,
         id: place.id,
       };
     }

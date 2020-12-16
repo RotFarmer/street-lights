@@ -14,8 +14,14 @@ label {
   padding: 10px;
   word-wrap: break-word;
 }
-.map {
-  /* position: relative; */
+input{
+  opacity: 0.1
+}
+input:hover {
+	opacity: 1
+}
+input:focus {
+  opacity: 1
 }
 
 .form-input {
@@ -26,6 +32,7 @@ label {
   border-radius: 10px;
   display: flex;
   position: absolute;
+  flex-direction: column;
   z-index: 2;
   top: 240px;
   left: 5px;
@@ -35,10 +42,10 @@ label {
   border: black 1px solid; */
 }
 .x {
-  position: absolute;
+  position: relative;
   display: flex;
-  top: -140px;
-  right: 20px;
+  right: -130px;
+  top:15px;
   color: #aa3d01;
   background-color: #fdc029;
   border-radius: 50%;
@@ -46,15 +53,17 @@ label {
   width: 20px;
   justify-content: center;
   align-items: center;
+  opacity: 60%;
 }
 .x:hover {
   cursor: pointer;
+  opacity: 1;
 }
 .x2 {
-  position: absolute;
+  position: relative;
   display: flex;
-  top: -20px;
-  right: 20px;
+  right: -130px;
+  top:15px;
   color: #aa3d01;
   background-color: #fdc029;
   border-radius: 50%;
@@ -62,9 +71,11 @@ label {
   width: 20px;
   justify-content: center;
   align-items: center;
+  opacity: 60%;
 }
 .x2:hover {
   cursor: pointer;
+  opacity: 1;
 }
 
 .hide {
@@ -109,12 +120,14 @@ label {
   background-color: #171820;
   width: 300px;
   height: 475px;
-  top: 22px;
-  left: 50px;
+  top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
   border: solid 5px #fdc029;
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index:100;
 }
 
 .reports-header {
@@ -211,6 +224,7 @@ div {
   display: flex;
   flex-direction: column;
   padding: 10px;
+  opacity: 60%;
 }
 .bubble-safe {
   background-color: #fdc029;
@@ -219,6 +233,13 @@ div {
   transition: all 0.5s;
   display: flex;
   padding: 5px;
+  opacity: 60%;
+}
+.bubble:hover{
+  opacity: 1;
+}
+.bubble-safe:hover{
+  opacity:1;
 }
 .textBox {
   background-color: rgba(0, 0, 0, 0);
@@ -268,6 +289,7 @@ div {
   font-family: "Helvetica Neue";
 }
 
+
 @keyframes Gradient {
   50% {
     background-position: 140% 50%;
@@ -298,6 +320,6 @@ div {
     height: 60px;
   }
   .x {
-    top: -66px;
+    /* top: -66px; */
   }
 }
