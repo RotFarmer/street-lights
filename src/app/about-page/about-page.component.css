@@ -4,11 +4,26 @@ h1,
 .about-container,
 .img-container {
   background-color: #171820;
+  width: 100%;
 }
-/* .img-container {
-} */
+.h1{
+position: relative;
+}
+.img-container{
+  height:100px;
+}
+.img{
+  height:100px;
+  width:200px;
+  position: relative;
+  left:140px;
+ bottom:-40%;
+  opacity: 60%;
+  z-index: 1;
+}
 .about-container {
-  color: #bcb6ae;
+  color: #df861d;
+  background-color:#171820;
 }
 
 .side-nav {
@@ -16,6 +31,7 @@ h1,
   background-color: #171820;
   display: flex;
   flex-direction: column;
+  position: absolute;
   /* position: relative; */
 }
 
