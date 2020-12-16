@@ -8,17 +8,19 @@
       <button class="side-btn">
         <a class="nav-link" [routerLink]="['/about']">About</a>
       </button>
+      <button class="side-btn">
+        <a class="nav-link" [routerLink]="['/blog']">Blog</a>
+      </button>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-header (navEvent)="toggleNav()"></app-header>
 
-
-
     <section class="about-container">
-      <H1 class="h1">The Genesis of Street Lights
+      <H1 class="h1"
+        >The Genesis of Street Lights
         <div class="img-container">
-          <img src="assets/streetlight.png" alt="Street light" class="img"/>
+          <img src="assets/streetlight.png" alt="Street light" class="img" />
         </div>
       </H1>
       <br />
