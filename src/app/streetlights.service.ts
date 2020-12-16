@@ -4,13 +4,14 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Report } from './interfaces/report';
 import { googleKey } from './secrets';
+import { environment } from 'src/environments/environment';
 // console.log(googleKey);
 
 @Injectable({
   providedIn: 'root',
 })
 export class StreetlightsService {
-  baseUrl: string = 'http://localhost:3000';
+  baseUrl: string = environment.apiBaseUrl;
   baseLocationUrl: string =
     'https://maps.googleapis.com/maps/api/geocode/json?';
   report: Report;
