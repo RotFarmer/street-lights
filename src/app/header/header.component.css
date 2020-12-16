@@ -9,7 +9,12 @@
   justify-content: space-between;
   background-color: #171820;
 }
-
+.img {
+  height: 50px;
+  width: 100px;
+  padding: 10px;
+  /* margin: 35px 0; */
+}
 .header-title {
   display: flex;
   font-family: "lemon-tuesday";
@@ -43,4 +48,16 @@
 }
 ::placeholder {
   color: #aa3d01;
+}
+
+@media only screen and (min-width: 768px) {
+  .search-input {
+    width: 400px;
+    height: 30px;
+  }
+
+  .img {
+    height: 100px;
+    width: 200px;
+  }
 }

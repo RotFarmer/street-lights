@@ -5,8 +5,8 @@ h1,
 .img-container {
   background-color: #171820;
 }
-.img-container {
-}
+/* .img-container {
+} */
 .about-container {
   color: #bcb6ae;
 }
@@ -19,8 +19,28 @@ h1,
   /* position: relative; */
 }
 
-.nav-close-btn {
+.side-btn {
+  background-color: transparent;
+  border: none;
   position: relative;
-  right: 125px;
-  bottom: 300px;
+  top: 75px;
+  margin: 20px 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #df861d;
+  font-size: 32px;
+}
+
+.nav-close-btn {
+  color: #df861d;
+  background: none;
+  border: none;
+  height: 20px;
+  width: 20px;
+  font-size: 28px;
+  position: relative;
+  right: -27px;
+  bottom: -27px;
 }
