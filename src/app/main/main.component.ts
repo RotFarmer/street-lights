@@ -318,24 +318,52 @@ export class MainComponent implements OnInit {
   }
 
   addMarker(place): void {
-    this.markers.push({
-      position: {
-        lat: parseFloat(place.lat),
-        lng: parseFloat(place.long),
-      },
-      label: {
-        color: '#fdc029',
-        text: place.name,
-      },
-      options: {},
-      title: place.name,
-      name: place.name,
-      address: place.address,
-      phone: place.phonenumber,
-      info: place.info,
-      safety: place.safety,
-      id: place.id,
-    });
+    let newMarker = {};
+    if (place.safety) {
+      newMarker = {
+        position: {
+          lat: parseFloat(place.lat),
+          lng: parseFloat(place.long),
+        },
+        label: {
+          color: '#fdc029',
+          text: place.name,
+        },
+        options: {
+          icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+        },
+
+        title: place.name,
+        name: place.name,
+        address: place.address,
+        phone: place.phonenumber,
+        info: place.info,
+        safety: place.safety,
+        id: place.id,
+      };
+    } else {
+      newMarker = {
+        position: {
+          lat: parseFloat(place.lat),
+          lng: parseFloat(place.long),
+        },
+        label: {
+          color: '#fdc029',
+          text: place.name,
+        },
+        options: {
+          icon: 'http://maps.google.com/mapfiles/ms/icons/red.png',
+        },
+        title: place.name,
+        name: place.name,
+        address: place.address,
+        phone: place.phonenumber,
+        info: place.info,
+        safety: place.safety,
+        id: place.id,
+      };
+    }
+    this.markers.push(newMarker);
     console.log(this.markers);
   }
 

@@ -1,11 +1,11 @@
 /* Set the size of the div element that contains the map */
-.map {
+/* .map {
   height: 775px;
   /* The height is 400 pixels */
-  width: 100%;
-  /* The width is the width of the web page */
-  position: relative;
-}
+/* width: 100%; */
+/* The width is the width of the web page */
+/* position: relative; */
+/* }  */
 
 input,
 label {
@@ -14,6 +14,10 @@ label {
   padding: 10px;
   word-wrap: break-word;
 }
+.map {
+  /* position: relative; */
+}
+
 .form-input {
   padding: 15px;
 }
@@ -30,41 +34,132 @@ label {
   width: 200px;
   border: black 1px solid; */
 }
-.x{
-  position:absolute;
+.x {
+  position: absolute;
   display: flex;
-  top:-140px;
-  right:20px;
+  top: -140px;
+  right: 20px;
   color: #aa3d01;
   background-color: #fdc029;
-  border-radius:50%;
-  height:20px;
-  width:20px;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
   justify-content: center;
   align-items: center;
 }
-.x:hover{
-  cursor:pointer;
+.x:hover {
+  cursor: pointer;
 }
-.x2{
-  position:absolute;
+.x2 {
+  position: absolute;
   display: flex;
-  top:-20px;
-  right:20px;
+  top: -20px;
+  right: 20px;
   color: #aa3d01;
   background-color: #fdc029;
-  border-radius:50%;
-  height:20px;
-  width:20px;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
   justify-content: center;
   align-items: center;
 }
-.x2:hover{
-  cursor:pointer;
+.x2:hover {
+  cursor: pointer;
 }
 
 .hide {
   display: none;
+}
+
+.side-nav {
+  width: 300px;
+  background-color: #171820;
+  display: flex;
+  flex-direction: column;
+  /* position: relative; */
+}
+
+.side-btn {
+  background-color: transparent;
+  border: none;
+  position: relative;
+  top: 75px;
+  margin: 20px 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #df861d;
+  font-size: 32px;
+}
+
+.nav-close-btn {
+  color: #df861d;
+  background: none;
+  border: none;
+  height: 20px;
+  width: 20px;
+  font-size: 28px;
+  position: relative;
+  right: 104px;
+  bottom: -27px;
+}
+.reports {
+  position: absolute;
+  background-color: #171820;
+  width: 300px;
+  height: 475px;
+  top: 22px;
+  left: 50px;
+  border: solid 5px #fdc029;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reports-header {
+  position: absolute;
+  top: 10px;
+  /* left: 20px; */
+  font-size: 28px;
+  text-align: center;
+}
+
+.reports-container {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  margin: 90px 0;
+  padding-top: 75px;
+  /* position: absolute;
+  top: 10px; */
+}
+.reports-content {
+  display: flex;
+  flex-direction: column;
+  border-top: solid 2px #fdc029;
+  border-bottom: solid 2px #fdc029;
+  margin: 5px;
+  /* height: 100px; */
+  /* position: relative; */
+  /* top: 100px; */
+}
+
+.reports-text {
+  margin: 5px;
+  text-align: center;
+}
+
+.report-btn {
+  background-color: #df861d;
+  border: none;
+  height: 30px;
+  width: 120px;
+  position: absolute;
+  bottom: 50px;
+
+  font-weight: bold;
 }
 
 .form {
@@ -72,18 +167,17 @@ label {
   flex-direction: column;
   padding: 0;
 }
-.whaHappun{
+.whaHappun {
   font-size: 22px;
 }
 .safe-p {
   color: #aa3d01;
   font: bolder;
   font-size: 25px;
-  margin-left:10px;
+  margin-left: 10px;
 }
 .safe-space {
   color: #aa3d01;
-  
 }
 
 ::placeholder {
@@ -91,9 +185,10 @@ label {
 }
 .submit-btn {
   background-color: #171820;
-  color: #aa3d01;
-  border-radius:25px;
-  height:40px;;
+  color: #fdc029;
+  border-radius: 25px;
+  border: solid 5px #fdc029;
+  height: 40px;
 }
 
 /* html,
@@ -108,30 +203,30 @@ div {
   justify-content: center;
   align-items: center;
 }
-.bubble{
+.bubble {
   background-color: #fdc029;
-  border-radius:25px;
-  margin:5px;
+  border-radius: 25px;
+  margin: 5px;
   transition: all 0.5s;
   display: flex;
   flex-direction: column;
-  padding:10px;
+  padding: 10px;
 }
-.bubble-safe{
+.bubble-safe {
   background-color: #fdc029;
-  border-radius:25px;
-  margin:5px;
+  border-radius: 25px;
+  margin: 5px;
   transition: all 0.5s;
   display: flex;
-  padding:5px;
+  padding: 5px;
 }
-.textBox{
-background-color: rgba(0,0,0,0);
-border-top-style: hidden;
-border-right-style: hidden;
-border-left-style: hidden;
-border-bottom: #aa3d01 1px solid ;
-width:215px;
+.textBox {
+  background-color: rgba(0, 0, 0, 0);
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom: #aa3d01 1px solid;
+  width: 215px;
 }
 
 .btn {
@@ -152,11 +247,11 @@ width:215px;
   display: flex;
   position: absolute;
   z-index: 1;
-  top: 630px;
+  top: 537px;
   left: 5px;
 }
-.btn:hover{
-  cursor:pointer;
+.btn:hover {
+  cursor: pointer;
 }
 
 .btn div {
@@ -193,18 +288,16 @@ width:215px;
   filter: blur(1rem);
 }
 
-.side-nav {
-  width: 300px;
-  background-color: #171820;
-  display: flex;
-  flex-direction: column;
-  /* position: relative; */
+@media only screen and (min-width: 768px) {
+  .btn {
+    top: 796px;
+    left: 56px;
+    padding: 25px;
+  }
+  .btn div {
+    height: 60px;
+  }
+  .x {
+    top: -66px;
+  }
 }
-
-/* .nav-close-btn {
-  position: relative;
-  right: 125px;
-  bottom: 300px;
- } */
-  
-

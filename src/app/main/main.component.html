@@ -2,14 +2,19 @@
   <mat-sidenav mode="side" [(opened)]="opened" position="end" class="side-nav">
     <div class="side-nav">
       <button class="nav-close-btn" (click)="toggleNav()">X</button>
-      <button><a [routerLink]="['/main']">Home</a></button>
-      <button><a [routerLink]="['/about']">About</a></button>
+      <button class="side-btn">
+        <a class="nav-link" [routerLink]="['/main']">Home</a>
+      </button>
+      <button class="side-btn">
+        <a class="nav-link" [routerLink]="['/about']">About</a>
+      </button>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-header (navEvent)="toggleNav()"></app-header>
     <google-map
-      height="659px"
+      class="map"
+      height="90vh"
       width="100%"
       [zoom]="zoom"
       [center]="center"
@@ -46,22 +51,28 @@
         <button (click)="showReports()">View all Reports</button>
         <button (click)="openForm()">Add a new Report</button>
       </map-info-window>
-      <div>
+      <div class="make-report">
         <a class="btn" (click)="addUserMarker()">
           <div>Make a Report!</div>
         </a>
       </div>
       <section [class.hide]="hideReports === true">
-        <h3>Reports for {{ locationName }}</h3>
-        <div *ngFor="let report of reports">
-          <p>
-            {{ report.date }}
-          </p>
-          <p>
-            {{ report.report }}
-          </p>
+        <div class="reports">
+          <h3 class="reports-header">Reports for {{ locationName }}</h3>
+          <div class="reports-container">
+            <div class="reports-content" *ngFor="let report of reports">
+              <p class="reports-text">
+                {{ report.report }}
+              </p>
+              <p class="reports-text">
+                {{ report.date }}
+              </p>
+            </div>
+          </div>
+          <button class="report-btn" (click)="showReports()">
+            Close Reports
+          </button>
         </div>
-        <button (click)="showReports()">Close Reports</button>
       </section>
       <section class="home-container">
         <div class="form-container" [class.hide]="hide === true">
@@ -71,32 +82,32 @@
             #addReportForm="ngForm"
             (ngSubmit)="submitReport(addReportForm)"
           >
-          <div class="bubble">
-            <h3 class="whaHappun">What Happened Here?</h3>
-          </div>
-          <div class="bubble">
-            <label for="report">Make Your Report</label>
-            <input
-              class="form-input"
-              type="text"
-              name="report"
-              id="report"
-              placeholder="Tell us about your experience"
-              class="textBox"
-              ngModel
-            />
-          </div>
-          <div class="bubble">
-            <label for="date">When did it Happen?</label>
-            <input
-              type="text"
-              name="date"
-              id="date"
-              placeholder="DD-MM-YYYY"
-              class="textBox"
-              ngModel
-            />
-          </div>
+            <div class="bubble">
+              <h3 class="whaHappun">What Happened Here?</h3>
+            </div>
+            <div class="bubble">
+              <label for="report">Make Your Report</label>
+              <input
+                class="form-input"
+                type="text"
+                name="report"
+                id="report"
+                placeholder="Tell us about your experience"
+                class="textBox"
+                ngModel
+              />
+            </div>
+            <div class="bubble">
+              <label for="date">When did it Happen?</label>
+              <input
+                type="text"
+                name="date"
+                id="date"
+                placeholder="DD-MM-YYYY"
+                class="textBox"
+                ngModel
+              />
+            </div>
             <input type="hidden" name="id" id="id" ngModel="{{ reportId }}" />
             <button class="submit-btn">Submit Your Report</button>
           </form>
@@ -134,17 +145,17 @@
               />
             </div>
             <div class="bubble">
-            <label for="phone">Phone Number</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-              placeholder="Optional"
-              class="textBox"
-              ngModel
-            />
-            </div>    
+              <label for="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                placeholder="Optional"
+                class="textBox"
+                ngModel
+              />
+            </div>
             <div class="bubble-safe">
               <p class="safe-p">Safe Place?</p>
               <input
