@@ -1,0 +1,37 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [(opened)]="opened" position="end" class="side-nav">
+    <div class="side-nav">
+      <button class="nav-close-btn" (click)="toggleNav()">X</button>
+      <button class="side-btn">
+        <a class="nav-link" [routerLink]="['/main']">Home</a>
+      </button>
+      <button class="side-btn">
+        <a class="nav-link" [routerLink]="['/about']">About</a>
+      </button>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header (navEvent)="toggleNav()"></app-header>
+
+    <div class="img-container">
+      <img src="assets/streetlight.png" alt="Street light" />
+    </div>
+    <section>
+      <h1>Welcome to Our Blog</h1>
+      <h3>
+        Learn more about pressing issues affecting women, LGBTQA members, and
+        minorities.
+      </h3>
+      <br />
+      <p>
+        Men, you may know women can have a hard time with harassment, but you
+        you're probably underestimating just how often and common it is.
+      </p>
+      <a
+        href="https://www.newsweek.com/sexual-harassment-metoo-women-men-underestimate-1246485"
+        >American Men Think 44 Percent Of Women Have Been Sexually Harassed.
+        It's Actually Nearly Double That
+      </a>
+    </section>
+  </mat-sidenav-content>
+</mat-sidenav-container>
