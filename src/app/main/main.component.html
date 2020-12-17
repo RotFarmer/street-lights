@@ -15,36 +15,15 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <app-header (navEvent)="toggleNav()"></app-header>
-    <google-map
-      class="map"
-      height="85vh"
-      width="100%"
-      [zoom]="zoom"
-      [center]="center"
-      [options]="options"
-    >
-      <map-marker
-        #markerElem="mapMarker"
-        *ngFor="let marker of markers"
-        [position]="marker.position"
-        [label]="marker.label"
-        [title]="marker.title"
-        [options]="marker.options"
-        (mapClick)="openInfo(markerElem, marker)"
-      >
+    <google-map class="map" height="85vh" width="100%" [zoom]="zoom" [center]="center" [options]="options">
+      <map-marker #markerElem="mapMarker" *ngFor="let marker of markers" [position]="marker.position"
+        [label]="marker.label" [title]="marker.title" [options]="marker.options"
+        (mapClick)="openInfo(markerElem, marker)">
       </map-marker>
 
-      <map-marker
-        class="btn"
-        #userMarkerElem="mapMarker"
-        *ngFor="let marker of userMarkers"
-        [position]="marker.position"
-        [label]="marker.label"
-        [title]="marker.title"
-        [options]="marker.options"
-        (mapClick)="openNewForm()"
-        (mapDragend)="setMarkerLocation($event)"
-      >
+      <map-marker class="btn" #userMarkerElem="mapMarker" *ngFor="let marker of userMarkers"
+        [position]="marker.position" [label]="marker.label" [title]="marker.title" [options]="marker.options"
+        (mapClick)="openNewForm()" (mapDragend)="setMarkerLocation($event)">
       </map-marker>
       <map-info-window>
         <p>{{ locationName }}</p>
@@ -54,10 +33,18 @@
         <button (click)="showReports()">View all Reports</button>
         <button (click)="openForm()">Add a new Report</button>
       </map-info-window>
-      <div class="make-report">
-        <a class="btn" (click)="addUserMarker()">
-          <div>Make a Report!</div>
-        </a>
+      <div class="btn-container">
+        <div>
+          <a class="btn emergency-color" href=”tel:+911″>
+            <div> Call 911 </div>
+          </a>
+        </div>
+        <div class="make-report">
+          <a class="btn neutral-color" (click)="addUserMarker()">
+            <div> Add Incident</div>
+          </a>
+        </div>
+
       </div>
       <section [class.hide]="hideReports === true">
         <div class="reports">
@@ -80,36 +67,18 @@
       <section class="home-container">
         <div class="form-container" [class.hide]="hide === true">
           <div (click)="openForm()" class="x2">X</div>
-          <form
-            class="form"
-            #addReportForm="ngForm"
-            (ngSubmit)="submitReport(addReportForm)"
-          >
+          <form class="form" #addReportForm="ngForm" (ngSubmit)="submitReport(addReportForm)">
             <div class="bubble">
               <h3 class="whaHappun">What Happened Here?</h3>
             </div>
             <div class="bubble">
               <label for="report">Make Your Report</label>
-              <input
-                class="form-input"
-                type="text"
-                name="report"
-                id="report"
-                placeholder="Tell us about your experience"
-                class="textBox"
-                ngModel
-              />
+              <input class="form-input" type="text" name="report" id="report"
+                placeholder="Tell us about your experience" class="textBox" ngModel />
             </div>
             <div class="bubble">
               <label for="date">When did it Happen?</label>
-              <input
-                type="text"
-                name="date"
-                id="date"
-                placeholder="DD-MM-YYYY"
-                class="textBox"
-                ngModel
-              />
+              <input type="text" name="date" id="date" placeholder="DD-MM-YYYY" class="textBox" ngModel />
             </div>
             <input type="hidden" name="id" id="id" ngModel="{{ reportId }}" />
             <button class="submit-btn">Submit Your Report</button>
@@ -117,82 +86,32 @@
         </div>
         <div class="form-container" [class.hide]="hideNew === true">
           <p (click)="closeNewForm()" class="x">X</p>
-          <form
-            class="form"
-            #reportForm="ngForm"
-            (ngSubmit)="submitPost(reportForm)"
-          >
+          <form class="form" #reportForm="ngForm" (ngSubmit)="submitPost(reportForm)">
             <div class="bubble">
               <h3 class="whaHappun">What Happened Here?</h3>
             </div>
             <div class="bubble">
               <label for="name">Name of Location</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Optional"
-                class="textBox"
-                ngModel
-              />
+              <input type="text" name="name" id="name" placeholder="Optional" class="textBox" ngModel />
             </div>
             <div class="bubble">
               <label for="address">Address of Location</label>
-              <input
-                type="text"
-                name="address"
-                id="address"
-                placeholder="Optional"
-                class="textBox"
-                ngModel
-              />
+              <input type="text" name="address" id="address" placeholder="Optional" class="textBox" ngModel />
             </div>
             <div class="bubble">
               <label for="phone">Phone Number</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                placeholder="Optional"
-                class="textBox"
-                ngModel
-              />
+              <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Optional"
+                class="textBox" ngModel />
             </div>
             <div class="bubble-safe">
               <p class="safe-p">Safe Place?</p>
-              <input
-                type="radio"
-                name="safety"
-                id="safe"
-                value="true"
-                ngModel
-              />
+              <input type="radio" name="safety" id="safe" value="true" ngModel />
               <label class="safe-space" for="safe">Safe</label>
-              <input
-                class="safe-space"
-                type="radio"
-                name="safety"
-                id="unsafe"
-                value="false"
-                ngModel
-              />
+              <input class="safe-space" type="radio" name="safety" id="unsafe" value="false" ngModel />
               <label class="safe-space" for="unsafe">Unsafe</label>
             </div>
-            <input
-              type="hidden"
-              name="lat"
-              id="lat"
-              placeholder="lat"
-              ngModel="{{ newLat }}"
-            />
-            <input
-              type="hidden"
-              name="long"
-              id="long"
-              placeholder="long"
-              ngModel="{{ newLong }}"
-            />
+            <input type="hidden" name="lat" id="lat" placeholder="lat" ngModel="{{ newLat }}" />
+            <input type="hidden" name="long" id="long" placeholder="long" ngModel="{{ newLong }}" />
             <button class="submit-btn">Submit Your Report</button>
           </form>
         </div>
