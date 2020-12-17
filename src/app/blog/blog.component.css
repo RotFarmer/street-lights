@@ -14,8 +14,10 @@
 }
 .blog-container {
   color: #171820;
-  background-color: rgb(185 191 197 / 21%);
-  border: 5mm ridge #aa3d01;
+  background-color: #bdcad9;
+  background-image: linear-gradient(315deg, #bdcad9 0%, #e1dada 74%);
+
+  border: 5mm inset #aa3d01;
   margin: auto;
   height: auto;
   width: auto;
@@ -28,7 +30,7 @@
 }
 .blog-header {
   font-family: "lemon-tuesday";
-  font-size: 75px;
+  font-size: 85px;
   text-shadow: 4px 2px #df861d;
   color: #aa0101;
 }
@@ -61,6 +63,9 @@
   flex-direction: column;
   position: absolute;
   /* position: relative; */
+}
+hr {
+  border-bottom: 2px double #171820;
 }
 
 .side-btn {

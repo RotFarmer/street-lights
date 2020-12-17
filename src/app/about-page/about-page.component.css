@@ -23,8 +23,10 @@ h1,
 }
 .about-container {
   color: #171820;
-  background-color: rgb(185 191 197 / 21%);
-  border: 5mm ridge #aa3d01;
+  background-color: #bdcad9;
+  background-image: linear-gradient(315deg, #bdcad9 0%, #e1dada 74%);
+
+  border: 5mm inset #aa3d01;
   margin: auto;
   height: auto;
   width: auto;
