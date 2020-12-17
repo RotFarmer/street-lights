@@ -25,9 +25,9 @@ h1,
   color: #171820;
   background-color: rgb(185 191 197 / 21%);
   border: 5mm ridge #aa3d01;
-  margin: 4%;
-  height: 975px;
-  width: 89%;
+  margin: auto;
+  height: auto;
+  width: auto;
 }
 
 .side-nav {
@@ -73,6 +73,7 @@ h1,
   color: #aa0101;
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 p {
