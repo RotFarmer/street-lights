@@ -1,5 +1,7 @@
 .img-container {
   height: 100px;
+  float: left;
+  width: 55%;
 }
 .img {
   height: 100px;
@@ -7,29 +9,46 @@
   position: relative;
   left: 140px;
   bottom: -40%;
-  opacity: 60%;
-  z-index: 1;
+  opacity: 20%;
+  z-index: -1;
 }
+.blog-container {
+  color: #171820;
+  background-color: rgb(185 191 197 / 21%);
+  border: 5mm ridge #aa3d01;
+  margin: 4%;
+  height: 975px;
+  width: 89%;
+}
+
 .intro {
   text-align: center;
 }
 .blog-header {
-  font-size: 50px;
-  text-shadow: 4px 4px #aa3c0173;
-  color: #bcb6ae;
+  font-family: "lemon-tuesday";
+  font-size: 75px;
+  text-shadow: 4px 2px #df861d;
+  color: #aa0101;
 }
 .blog-about {
   font-size: 32px;
-  text-shadow: 4px 4px #aa3c0173;
-  color: #bcb6ae;
+  text-shadow: 2px 2px #aa0101;
+  color: #171820;
 }
 .hyperlink {
-  font-size: 25px;
-  color: #aa3c0173;
+  font-size: 15px;
+  font-weight: bolder;
+  color: #aa0101;
+  margin: 20px;
+  padding: 10px;
+  align-content: center;
 }
 .p {
-  font-size: 30px;
-  color: #bcb6ae;
+  font-size: 20px;
+  font-weight: bold;
+  color: #171820;
+  margin: 20px;
+  padding: 10px;
 }
 .side-nav {
   width: 300px;
